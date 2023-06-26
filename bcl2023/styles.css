@@ -256,4 +256,9 @@ select option {
         width: 100%;
         padding-right: 0;
     }
+
+    .col-half2 {
+        width: 100%;
+        padding-right: 0;
+    }
 }
