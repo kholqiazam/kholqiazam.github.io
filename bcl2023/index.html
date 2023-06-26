@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        var lokasiObject = {
+            "Aceh": {
+                "Nelayan": ["Mukhlis ", "Tarmizi Arifin ", "Syarifuddin Arsyad", "M. Yusuf Ahmad"],
+                "Penyuluh": ["Nawawi, SP", "Syafruddin, SP", "Nani Afriati, S.Pi", "Afriliana,S.St.Pi"],
+                "Pegawai KKP": ["Fadly Pratama Widjaya", "Kris Handoko", "Azzami Rasyid"]
+            },
+            "Kubu Raya": {
+                "Nelayan": ["ZULKARNAIN ", "PAWADI ", "WAHIPAL", "HERMANSYA"],
+                "Penyuluh": ["Dian Purwani Suci, S.Pi", "Nursetya Aisyah", "Andy Irsandi, A.Md", "Hardiyono"],
+                "Pegawai KKP": ["Andrian Saputra", "Dwi Listyaningsih", "Kety Intana Janesonia", "Yulianti Sri Rejeki"]
+            },
+        }
+        window.onload = function () {
+            var lokasiSel = document.getElementById("lokasi");
+            var stakeholderSel = document.getElementById("stakeholder");
+            var namaSel = document.getElementById("nama");
+            var namaNelayanSel01 = document.getElementById("namaNelayan");
+            var namaNelayanSel02 = document.getElementById("namaNelayan2");
+            for (var x in lokasiObject) {
+                lokasiSel.options[lokasiSel.options.length] = new Option(x, x);
+            }
+            lokasiSel.onchange = function () {
+                //empty namas- and stakeholders- dropdowns
+                namaSel.length = 1;
+                stakeholderSel.length = 1;
+                namaNelayanSel01.length = 1;
+                //display correct values
+                var zn = lokasiObject[lokasiSel.value]["Nelayan"];
+                for (var y in lokasiObject[this.value]) {
+                    stakeholderSel.options[stakeholderSel.options.length] = new Option(y, y);
+                }
+                for (var i = 0; i < zn.length; i++) {
+                    namaNelayanSel01.options[namaNelayanSel01.options.length] = new Option(zn[i], zn[i]);
+                    namaNelayanSel02.options[namaNelayanSel02.options.length] = new Option(zn[i], zn[i]);
+                }
+            }
+            stakeholderSel.onchange = function () {
+                //empty namas dropdown
+                namaSel.length = 1;
+                //display correct values
+                var z = lokasiObject[lokasiSel.value][this.value];
+                for (var i = 0; i < z.length; i++) {
+                    namaSel.options[namaSel.options.length] = new Option(z[i], z[i]);
+                }
+
+            }
+        }
+    </script>
+    <title>INPUT DATA BCL 2023</title>
+</head>
+
+<body>
+    <div class="container">
+        <form method="POST"
+            action="https://script.google.com/macros/s/AKfycbxKojiNYkCvWzEG76RMZKK1_NK19y6P14WBnvHxQMBBCVwybABjRbVHz2WH_FJSAIo/exec">
+            <div class="row">
+                <h3>Input Data BCL</h3>
+            </div>
+            <h4>Tanggal Pengambilan Sampah</h4>
+            <div class="input-group input-group-icon">
+                <input type="date" name="tglSampah" />
+                <div class="input-icon"><i class="fa fa-list"></i></div>
+            </div>
+            <h4>Informasi Dasar Penginput Data</h4>
+            <div class="input-group input-group-icon">
+                <select name="lokasi" id="lokasi">
+                    <option value="" selected="selected">Pilih Lokasi</option>
+                </select>
+                <div class="input-icon"><i class="fa fa-location-arrow"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+                <select name="stakeholder" id="stakeholder">
+                    <option value="" selected="selected">Pilih Stakeholder</option>
+                </select>
+                <div class="input-icon"><i class="fa fa-list"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+                <select name="nama" id="nama">
+                    <option value="" selected="selected">Pilih Nama</option>
+                </select>
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+
+            <h4>Data Sampah Terkumpul</h4>
+            <h5>Nelayan 1</h5>
+            <div class="input-group input-group-icon">
+                <select name="namaNelayan" id="namaNelayan">
+                    <option value="" selected="selected">Nama Nelayan</option>
+                </select>
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+
+            <div class="col-half">
+                <caption>Plastik</caption>
+                <div class="input-group input-group-icon"><input type="number" name="plastik" value="0" />
+                    <div class="input-icon"><i class="fa fa-bottle-water"></i></div>
+                </div>
+            </div>
+            <div class="col-half2">
+                <caption>Kaca</caption>
+                <div class="input-group input-group-icon"><input type="number" name="kaca" value="0" />
+                    <div class="input-icon"><i class="fa fa-glass-martini"></i></div>
+                </div>
+            </div>
+            <div class="col-half">
+                <caption>Besi</caption>
+                <div class="input-group input-group-icon"><input type="number" name="besi" value="0" />
+                    <div class="input-icon"><i class="fa fa-coins"></i></div>
+                </div>
+            </div>
+            <div class="col-half2">
+                <caption>Duplex</caption>
+                <div class="input-group input-group-icon"><input type="number" name="duplex" value="0" />
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                </div>
+            </div>
+            <div class="col-half">
+                <caption>Ecobrick</caption>
+                <div class="input-group input-group-icon"><input type="number" name="ecobrick" value="0" />
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                </div>
+            </div>
+            <div class="col-half2">
+                <caption>Residu</caption>
+                <div class="input-group input-group-icon"><input type="number" name="residu" value="0" />
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                </div>
+            </div>
+
+            <h5>Nelayan 2</h5>
+            <div class="input-group input-group-icon">
+                <select name="namaNelayan2" id="namaNelayan2">
+                    <option value="" selected="selected">Nama Nelayan</option>
+                </select>
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+
+            <div class="col-half">
+                <caption>Plastik</caption>
+                <div class="input-group input-group-icon"><input type="number" name="plastik2" value="0" />
+                    <div class="input-icon"><i class="fa fa-bottle-water"></i></div>
+                </div>
+            </div>
+            <div class="col-half2">
+                <caption>Kaca</caption>
+                <div class="input-group input-group-icon"><input type="number" name="kaca2" value="0" />
+                    <div class="input-icon"><i class="fa fa-glass-martini"></i></div>
+                </div>
+            </div>
+            <div class="col-half">
+                <caption>Besi</caption>
+                <div class="input-group input-group-icon"><input type="number" name="besi2" value="0" />
+                    <div class="input-icon"><i class="fa fa-coins"></i></div>
+                </div>
+            </div>
+            <div class="col-half2">
+                <caption>Duplex</caption>
+                <div class="input-group input-group-icon"><input type="number" name="duplex2" value="0" />
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                </div>
+            </div>
+            <div class="col-half">
+                <caption>Ecobrick</caption>
+                <div class="input-group input-group-icon"><input type="number" name="ecobrick2" value="0" />
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                </div>
+            </div>
+            <div class="col-half2">
+                <caption>Residu</caption>
+                <div class="input-group input-group-icon"><input type="number" name="residu2" value="0" />
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">submit</button>
+
+        </form>
+    </div>
+</body>
+
+</html>
